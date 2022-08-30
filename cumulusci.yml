@@ -7,6 +7,7 @@ project:
     api_version: "55.0"
   git:
     default_branch: "main"
+    repo_url: https://github.com/cesarParra/meta-deploy-package-1
   source_format: sfdx
 
 tasks:
