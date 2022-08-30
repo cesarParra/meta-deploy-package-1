@@ -1,26 +1,35 @@
-minimum_cumulusci_version: '3.64.0'
+minimum_cumulusci_version: "3.64.0"
 project:
+  name: meta-deploy-package-1
+  package:
     name: meta-deploy-package-1
-    package:
-        name: meta-deploy-package-1
-        namespace: meta1test
-        api_version: '55.0'
-    git:
-        default_branch: 'main'
-    source_format: sfdx
+    namespace: meta1test
+    api_version: "55.0"
+  git:
+    default_branch: "main"
+  source_format: sfdx
 
 tasks:
-    robot:
-        options:
-            suites: robot/meta-deploy-package-1/tests
-            options:
-                outputdir: robot/meta-deploy-package-1/results
+  robot:
+    options:
+      suites: robot/meta-deploy-package-1/tests
+      options:
+        outputdir: robot/meta-deploy-package-1/results
 
-    robot_testdoc:
-        options:
-            path: robot/meta-deploy-package-1/tests
-            output: robot/meta-deploy-package-1/doc/meta-deploy-package-1_tests.html
+  robot_testdoc:
+    options:
+      path: robot/meta-deploy-package-1/tests
+      output: robot/meta-deploy-package-1/doc/meta-deploy-package-1_tests.html
 
-    run_tests:
-        options:
-            required_org_code_coverage_percent: 75
+  run_tests:
+    options:
+      required_org_code_coverage_percent: 75
+
+plans:
+  install:
+    slug: install
+    title: Install
+    tier: primary
+    steps:
+      1:
+        flow: install_prod
