@@ -4,8 +4,8 @@
       "path": "force-app",
       "default": true,
       "package": "MetaDeploy1",
-      "versionName": "ver 0.1",
-      "versionNumber": "0.2.0.NEXT",
+      "versionName": "Version 0.3",
+      "versionNumber": "0.3.0.NEXT",
       "ancestorVersion": "HIGHEST"
     }
   ],
@@ -16,6 +16,7 @@
   "packageAliases": {
     "MetaDeploy1": "0Ho4x000000sYQQCA2",
     "MetaDeploy1@0.1.0-1": "04t4x0000002szVAAQ",
-    "MetaDeploy1@0.1.0-4": "04t4x000000eOsKAAU"
+    "MetaDeploy1@0.1.0-4": "04t4x000000eOsKAAU",
+    "MetaDeploy1@0.2.0-1": "04t4x000000eOsPAAU"
   }
 }
