@@ -5,7 +5,8 @@
       "default": true,
       "package": "MetaDeploy1",
       "versionName": "ver 0.1",
-      "versionNumber": "0.2.0.NEXT"
+      "versionNumber": "0.2.0.NEXT",
+      "ancestorVersion": "HIGHEST"
     }
   ],
   "name": "meta-deploy-package-1",
