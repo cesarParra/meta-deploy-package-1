@@ -17,8 +17,9 @@ jobs:
       - name: upload-beta
         id: upload-beta
         run: |
+          echo "Creating package version"
           json=$( sfdx force:package:version:create --package MetaDeploy1 --installationkeybypass --codecoverage -w 30 --json )
-          echo $json
+          echo "Output: $json"
           status=$(echo $json | jq '.status')
           if [ $status == "0" ]; then
               packageVersionId=$(echo $json | jq -r '.result.SubscriberPackageVersionId')
