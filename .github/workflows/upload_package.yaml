@@ -30,7 +30,7 @@ jobs:
       - name: increment-version
         run: node scripts/dev/increment-minor-version.js
       - name: promote
-        run: sfdx force:package:version:promote -p ${{ steps.upload-beta.outputs.packageVersionId }}
+        run: sf force package version promote -p ${{ steps.upload-beta.outputs.packageVersionId }} --no-prompt
       - uses: stefanzweifel/git-auto-commit-action@v4
         if: ${{ !env.ACT }}
         with:
