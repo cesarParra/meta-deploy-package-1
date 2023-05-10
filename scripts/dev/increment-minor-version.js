@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 // Load the sfdx-project.json file
 const project = require("../../sfdx-project.json");
 
@@ -20,11 +18,9 @@ packageDirectory.versionNumber = `${major}.${newMinor}.${patch}.${next}`;
 packageDirectory.versionName = `Version ${major}.${newMinor}`;
 
 // Write the updated project file
-fs.writeFile("./sfdx-project.json", JSON.stringify(project, null, 2), (err) => {
-  if (err) {
-    process.exitCode = 1;
-  } else {
-    console.log(`Updated the minor version number to ${major}.${newMinor}`);
-    process.exitCode = 0;
-  }
-});
+require("fs").writeFileSync(
+  "./sfdx-project.json",
+  JSON.stringify(project, null, 2)
+);
+
+console.log("Updated the minor version number");
