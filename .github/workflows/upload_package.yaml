@@ -1,0 +1,36 @@
+name: Upload Package
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.DEV_HUB_AUTH_URL }}
+      - name: upload-beta
+        id: upload-beta
+        run: |
+          json=$( sfdx force:package:version:create --package MetaDeploy1 --definitionfile --installationkeybypass --codecoverage -w 30 --json )
+          status=$(echo $json | jq '.status')
+          if [ $status == "0" ]; then
+              packageVersionId=$(echo $json | jq -r '.result.SubscriberPackageVersionId')
+              echo "::set-output name=packageVersionId::$packageVersionId"
+          else
+              echo "sfdx force:package:version:create failed"
+          fi
+          exit $status
+      - name: increment-version
+        run: node scripts/dev/increment-minor-version.js
+      - name: promote
+        run: sfdx force:package:version:promote -p ${{ steps.upload-beta.outputs.packageVersionId }}
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        if: ${{ !env.ACT }}
+        with:
+          commit_message: New package release
